@@ -1,0 +1,15 @@
+{% extends 'movierecommender/base.html' %}
+
+{% block title %}Home - Movie Recommender{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Movie Recommender</h2>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! Ready to get some movie recommendations?</p>
+        <a href="{% url 'movie_recommendation_view' %}">View Recommendations</a>
+    {% else %}
+        <p>Sign up or log in to get personalized movie recommendations!</p>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+{% endblock %}

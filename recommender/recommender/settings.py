@@ -159,14 +159,24 @@ CSRF_TRUSTED_ORIGINS = ['https://badrsouhar-8000.theiadockernext-0-labs-prod-the
 
 # Application definition
 
+# INSTALLED_APPS = [
+#     'movierecommender.apps.MovierecommenderConfig',
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+# ]
+
 INSTALLED_APPS = [
-    'movierecommender.apps.MovierecommenderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'movierecommender',  # Make sure this line is present
 ]
 
 MIDDLEWARE = [

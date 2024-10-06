@@ -13,10 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.contrib import admin
+# from django.urls import include, path
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('movierecommender/', include('movierecommender.urls'))
+# ]
+
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movierecommender/', include('movierecommender.urls'))
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('signup/', CreateView.as_view(
+        template_name='registration/signup.html',
+        form_class=UserCreationForm,
+        success_url='/login/'
+    ), name='signup'),
+    path('', include('movierecommender.urls')),  # This line is crucial
 ]

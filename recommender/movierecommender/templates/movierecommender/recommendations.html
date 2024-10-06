@@ -1,0 +1,23 @@
+{% extends 'movierecommender/base.html' %}
+
+{% block title %}Your Recommendations{% endblock %}
+
+{% block content %}
+  <h2>Your Movie Recommendations</h2>
+  <p>Based on {{ watched_count }} movies you've watched.</p>
+  {% if recommended_movies %}
+    <ul>
+    {% for movie in recommended_movies %}
+      <li>
+        <h3>{{ movie.original_title }} ({{ movie.release_date|slice:":4" }})</h3>
+        <p>Genres: {{ movie.genres }}</p>
+        <p>Rating: {{ movie.vote_average|floatformat:1 }} / 10</p>
+        <p>{{ movie.overview|truncatewords:50 }}</p>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recommendations available. Try watching more movies!</p>
+  {% endif %}
+  <p><a href="{% url 'movie_list' %}">Mark more movies as watched</a></p>
+{% endblock %}
